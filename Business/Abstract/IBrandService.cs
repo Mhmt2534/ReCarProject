@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract;
 
-public interface ICarService
+public interface IBrandService
 {
-    List<Car> GetAll();
-    List<Car> GetCarsById(int id);
+    List<Brand> GetAll();
+    List<Brand> Get(int id);
 
-    void Add(Car car);
-    void Update(Car car);
-    void Delete(Car car);
-
+    void Add(Brand brand);
+    void Update(Brand brand);
+    void Delete(Brand brand);
 }

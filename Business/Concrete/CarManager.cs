@@ -20,4 +20,32 @@ public class CarManager : ICarService
     {
         return _carDal.GetAll();
     }
+
+    public List<Car> GetCarsById(int id)
+    {
+        return _carDal.GetAll(c=>c.CarId==id);
+    }
+
+    public List<Car> GetCarsByBrandId(int id) {
+        return _carDal.GetAll(c => c.BrandId == id);
+    }
+
+    public List<Car> GetCarsByColorId(int id) { 
+    return _carDal.GetAll(c=> c.ColorId == id);
+    }
+
+    public void Add(Car car)
+    {
+        _carDal.Add(car);
+    }
+
+    public void Update(Car car)
+    {
+        _carDal.Update(car);
+    }
+
+    public void Delete(Car car)
+    {
+       _carDal.Delete(car);
+    }
 }

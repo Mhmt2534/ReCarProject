@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract;
 
-public interface ICarDal:IEntitiyRepository<Car>
+public interface IBrandDal:IEntitiyRepository<Brand>
 {
-   
 }
