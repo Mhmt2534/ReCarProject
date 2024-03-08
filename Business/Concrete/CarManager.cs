@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,9 @@ public class CarManager : ICarService
         return _carDal.GetAll();
     }
 
-    public List<Car> GetCarsById(int id)
+    public Car GetCarsById(int id)
     {
-        return _carDal.GetAll(c=>c.CarId==id);
+        return _carDal.Get(c=>c.CarId==id);
     }
 
     public List<Car> GetCarsByBrandId(int id) {
@@ -36,7 +38,16 @@ public class CarManager : ICarService
 
     public void Add(Car car)
     {
-        _carDal.Add(car);
+        if (car.Description.Length >= 2 && car.DailyPrice > 0)
+        {
+            Console.WriteLine("Araba Başarıyla Eklendi");
+            _carDal.Add(car);
+        }
+        else
+        {
+            Console.WriteLine("Araba eklenemedi. Araba ismi minimum 2 karakter olmalıdır ve günlük fiyatı 0'dan büyük olmalıdır.");
+        }
+        
     }
 
     public void Update(Car car)
@@ -48,4 +59,10 @@ public class CarManager : ICarService
     {
        _carDal.Delete(car);
     }
+
+    public List<CarDetailDto> GetDetail()
+    {
+        return _carDal.GetCarDetail();
+    }
+
 }

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,49 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EFColorDal : IColorDal
+public class EFColorDal : EfEntityRepositoryBase<Color,NorthwindContext>,IColorDal
 {
-    public void Add(Color entity)
-    {
-        using (NorthwindContext context=new())
-        {
-            var addedEntity = context.Entry(entity);
-            addedEntity.State=EntityState.Added;
-            context.SaveChanges();
-        }
-    }
-
-    public void Delete(Color entity)
-    {
-        using (NorthwindContext context=new())
-        {
-            var deletedEntity = context.Entry(entity);
-            deletedEntity.State=EntityState.Deleted;
-            context.SaveChanges();
-        }
-    }
-
-    public List<Color> Get(Expression<Func<Color, bool>> filter)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
-    {
-        using (NorthwindContext context = new())
-        {
-            return filter == null ? context.Set<Color>().ToList():
-                context.Set<Color>().Where(filter).ToList();
-        }
-    }
-
-    public void Update(Color entity)
-    {
-        using (NorthwindContext context = new())
-        {
-            var updatedEntity = context.Entry(entity);
-            updatedEntity.State = EntityState.Modified;
-            context.SaveChanges();
-        }
-    }
+    
 }

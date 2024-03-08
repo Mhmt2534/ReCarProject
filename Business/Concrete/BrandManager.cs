@@ -32,9 +32,9 @@ public class BrandManager : IBrandService
         return _brandDal.GetAll();
     }
 
-    public List<Brand> Get(int id)
+    public Brand Get(int id)
     {
-        throw new NotImplementedException();
+        return _brandDal.Get(b=>b.BrandId==id);
     }
 
     public void Update(Brand brand)

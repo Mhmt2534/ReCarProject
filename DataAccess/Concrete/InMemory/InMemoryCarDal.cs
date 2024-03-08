@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,9 +48,9 @@ public class InMemoryCarDal : ICarDal
         throw new NotImplementedException();
     }
 
-    public List<Car> GetById(int id)
+    public Car GetById(int id)
     {
-        return _cars.Where(c=>c.CarId == id).ToList();
+        return null;
     }
 
     public List<Car> Get(Expression<Func<Car, bool>> filter)
@@ -65,5 +67,20 @@ public class InMemoryCarDal : ICarDal
         carToUpdate.ColorId=car.ColorId;
         carToUpdate.DailyPrice=car.DailyPrice;
         carToUpdate.Description=car.Description;
+    }
+
+    public Car Get(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    Car IEntitiyRepository<Car>.Get(Expression<Func<Car, bool>> filter)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<CarDetailDto> GetCarDetail()
+    {
+        throw new NotImplementedException();
     }
 }

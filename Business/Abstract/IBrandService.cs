@@ -10,7 +10,7 @@ namespace Business.Abstract;
 public interface IBrandService
 {
     List<Brand> GetAll();
-    List<Brand> Get(int id);
+    Brand Get(int id);
 
     void Add(Brand brand);
     void Update(Brand brand);

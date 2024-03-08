@@ -10,7 +10,7 @@ namespace Business.Abstract;
 public interface IColorService
 {
     List<Color> GetAll();
-    List<Color> GetBrandById(int id);
+    Color GetColorById(int id);
 
     void Add(Color color);
     void Update(Color color);
