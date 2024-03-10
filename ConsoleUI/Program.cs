@@ -1,30 +1,69 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemoryCarDal;
 using Entities.Concrete;
 
 
 CarManager carManager=new CarManager(new EFCarDal());
-/*
-foreach (var car in carManager.GetAll())
+
+var result = carManager.GetDetail();
+Console.WriteLine(result.Message);
+foreach (var car in result.Data)
 {
-    Console.WriteLine(car.Description);
+    Console.WriteLine(car.CarName + " / " + car.BrandName);
 }
 
 Console.WriteLine("");
-*/
+
 
 /*
 Car car1 = new Car();
-car1.CarId = 7;
-car1.BrandId = 4;
-car1.ColorId = 2;
-car1.ModelYear = 2019;
+car1.CarId = 8;
+car1.BrandId = 2;
+car1.ColorId = 3;
+car1.ModelYear = 2020;
 car1.DailyPrice = 120000;
-car1.Description = "2019 model siyah BMW";
-
-carManager.Add(car1);
+car1.Description = "2018 model Beyaz Toyota";
+car1.CarName = "Toyota AR";
 */
+
+
+/*
+var result=carManager.Add(car1);
+
+if (result.Success)
+{
+    Console.WriteLine(result.Message);
+}
+else
+{
+    Console.WriteLine(result.Message);
+}
+*/
+
+
+/*
+var result = carManager.Delete(car1);
+
+if (result.Success)
+{
+    Console.WriteLine(result.Message);
+}
+else
+{
+    Console.WriteLine(result.Message);
+}
+*/
+
+
+
+
+
+
+
+
+
 
 /*
 BrandManager brandManager = new(new EFBrandDal());
@@ -58,8 +97,18 @@ car2.Description = "2019 model kirmizi Ford";
 carManager.Delete(car2);
 */
 
-
+/*
 foreach (var car in carManager.GetDetail())
 {
     Console.WriteLine(car.CarName + " / " +car.BrandName + " / " + car.ColorName + " / " + car.DailyPrice + " TL");
 }
+*/
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -16,28 +19,32 @@ public class ColorManager : IColorService
     {
         _colorDal = colorDal;
     }
-    public void Add(Color color)
+
+    public IResult Add(Color color)
     {
-        throw new NotImplementedException();
+        _colorDal.Add(color);
+        return new SuccessResult(Messages.BrandAdded);
     }
 
-    public void Delete(Color color)
+    public IResult Delete(Color color)
     {
-        throw new NotImplementedException();
+        _colorDal.Delete(color);
+        return new SuccessResult(Messages.BrandAdded);
     }
 
-    public List<Color> GetAll()
+    public IDataResult<List<Color>> GetAll()
     {
-        throw new NotImplementedException();
+        return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.BrandAdded);
     }
 
-    public Color GetColorById(int id)
+    public IDataResult<Color> GetColorById(int id)
     {
-        throw new NotImplementedException();
+        return new SuccessDataResult<Color>(_colorDal.Get(b => b.ColorId == id));
     }
 
-    public void Update(Color color)
+    public IResult Update(Color color)
     {
-        throw new NotImplementedException();
+        _colorDal.Update(color);
+        return new SuccessResult(Messages.BrandAdded);
     }
 }

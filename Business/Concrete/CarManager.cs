@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,51 +20,55 @@ public class CarManager : ICarService
     {
         _carDal = carDal;
     }
-    public List<Car> GetAll()
+    public IDataResult<List<Car>> GetAll()
     {
-        return _carDal.GetAll();
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
     }
 
-    public Car GetCarsById(int id)
+    public IDataResult<Car> GetCarsById(int id)
     {
-        return _carDal.Get(c=>c.CarId==id);
+        return new SuccessDataResult<Car>(_carDal.Get(c=>c.CarId==id), Messages.CarCall);
     }
 
-    public List<Car> GetCarsByBrandId(int id) {
-        return _carDal.GetAll(c => c.BrandId == id);
+    public IDataResult<List<Car>> GetCarsByBrandId(int id) {
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id),Messages.CarAdded);
     }
 
-    public List<Car> GetCarsByColorId(int id) { 
-    return _carDal.GetAll(c=> c.ColorId == id);
+    public IDataResult<List<Car>> GetCarsByColorId(int id) {
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=> c.ColorId == id),Messages.CarsListed);
     }
 
-    public void Add(Car car)
+    public IResult Add(Car car)
     {
         if (car.Description.Length >= 2 && car.DailyPrice > 0)
         {
-            Console.WriteLine("Araba Başarıyla Eklendi");
+            Console.WriteLine("Deneme");
             _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
-        else
-        {
-            Console.WriteLine("Araba eklenemedi. Araba ismi minimum 2 karakter olmalıdır ve günlük fiyatı 0'dan büyük olmalıdır.");
-        }
+       return new ErrorResult(Messages.CarNotAdded);
         
     }
 
-    public void Update(Car car)
+    public IResult Update(Car car)
     {
         _carDal.Update(car);
+        return new SuccessResult(Messages.CarUpdated);
     }
 
-    public void Delete(Car car)
+    public IResult Delete(Car car)
     {
        _carDal.Delete(car);
+        return new SuccessResult(Messages.CarDeleted);
     }
 
-    public List<CarDetailDto> GetDetail()
+    public IDataResult<List<CarDetailDto>> GetDetail()
     {
-        return _carDal.GetCarDetail();
+        if (DateTime.Now.Hour==23)
+        {
+            return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+        }
+        return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail(), Messages.CarsListed);
     }
 
 }
