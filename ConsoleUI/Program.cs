@@ -5,6 +5,32 @@ using DataAccess.Concrete.InMemoryCarDal;
 using Entities.Concrete;
 
 
+Rentals rentals1=new Rentals();
+rentals1.Id = 1;
+rentals1.CarId = 5;
+rentals1.CustomerId = 4;
+rentals1.RentDate = DateTime.Now;
+
+
+
+
+RentalManager rentalManager = new(new EfRentalDal());
+var res = rentalManager.Add(rentals1);
+Console.WriteLine(res.Message);
+
+
+/*
+CustomerManager customerManager = new(new EfCustomerDal());
+var res=customerManager.GetAll();
+Console.WriteLine(res.Message);
+foreach (var customers in res.Data)
+{
+    Console.WriteLine(customers.UserId + " / " + customers.CompanyName );
+}
+*/
+
+
+/*
 CarManager carManager=new CarManager(new EFCarDal());
 
 var result = carManager.GetDetail();
@@ -15,7 +41,7 @@ foreach (var car in result.Data)
 }
 
 Console.WriteLine("");
-
+*/
 
 /*
 Car car1 = new Car();
