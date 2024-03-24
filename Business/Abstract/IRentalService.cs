@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract;
 
-public interface IRentalServices
+public interface IRentalService
 {
     IResult Add(Rentals rentals);
     IResult Delete(Rentals rentals);
@@ -16,4 +16,5 @@ public interface IRentalServices
 
     IDataResult<List<Rentals>> GetAll();
 
+    IDataResult<Rentals> GetById(int id);
 }

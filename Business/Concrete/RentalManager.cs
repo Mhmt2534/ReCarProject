@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
-public class RentalManager : IRentalServices
+public class RentalManager : IRentalService
 {
     private readonly IRentalDal _rentalDal;
     public RentalManager(IRentalDal rentalDal)
@@ -40,6 +40,11 @@ public class RentalManager : IRentalServices
     public IDataResult<List<Rentals>> GetAll()
     {
         return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(), Messages.CarsListed);
+    }
+
+    public IDataResult<Rentals> GetById(int id)
+    {
+        return new SuccessDataResult<Rentals>(_rentalDal.Get(r=>r.Id==id));
     }
 
     public IResult Update(Rentals rentals)

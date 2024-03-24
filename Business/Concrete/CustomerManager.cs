@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete;
 
-public class CustomerManager : ICustomerServices
+public class CustomerManager : ICustomerService
 {
     private readonly ICustomerDal _customerDal;
     public CustomerManager(ICustomerDal customerDal)
@@ -21,28 +21,28 @@ public class CustomerManager : ICustomerServices
     public IResult Add(Customers customers)
     {
         _customerDal.Add(customers);
-        return new SuccessResult(Messages.UserAdd);
+        return new SuccessResult(Messages.CustomerAdded);
     }
 
     public IResult Delete(Customers customers)
     {
         _customerDal.Delete(customers);
-        return new SuccessResult(Messages.UserDeleted);
+        return new SuccessResult(Messages.CustomerDeleted);
     }
 
     public IDataResult<List<Customers>> GetAll()
     {
-        return new SuccessDataResult<List<Customers>>(_customerDal.GetAll(),Messages.UserCall);
+        return new SuccessDataResult<List<Customers>>(_customerDal.GetAll(),Messages.CustomerListed);
     }
 
     public IDataResult<Customers> GetById(int id)
     {
-        return new SuccessDataResult<Customers>(_customerDal.Get(c=>c.UserId==id),Messages.UserCall);
+        return new SuccessDataResult<Customers>(_customerDal.Get(c=>c.UserId==id),Messages.CustomerCall);
     }
 
     public IResult Update(Customers customers)
     {
         _customerDal.Update(customers);
-        return new SuccessResult(Messages.UserUpdated);
+        return new SuccessResult(Messages.CustomerUpdated);
     }
 }

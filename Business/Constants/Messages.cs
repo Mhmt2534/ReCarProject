@@ -8,19 +8,44 @@ namespace Business.Constants;
 
 public static class Messages
 {
+    public static string CarsListed = "Cars Listed";
+    public static string CarCall = "Car Call";
     public static string CarAdded = "Car Added";
-    public static string UserAdd = "Kullanıcı eklendi";
     public static string CarDeleted = "Car Deleted";
-    public static string UserDeleted = "Kullanıcı silindi";
     public static string CarUpdated = "Car Updated";
-    public static string UserUpdated = "Kullanıcı Güncellendi";
+    public static string NotCar = "There isn't car";
+    public static string CarNotAdded = "Car not added. Name of the car must be minimum 2 characters and Daily Price must be greater than 0 ";
+
+
+    public static string BrandListed = "Brands Listed";
+    public static string BrandCall = "Brand Call";
     public static string BrandAdded = "Brand Added";
+    public static string BrandDeleted = "Brand Deleted";
+    public static string BrandUpdated = "Brand Updated";
+    public static string NotBrand = "There isn't brand";
+
+    public static string ColorListed = "Colors Listed";
+    public static string ColorCall = "Color Call";
     public static string ColorAdded = "Color Added";
-    public static string CarNotAdded = "Araba eklenemedi. Araba ismi minimum 2 karakter olmalıdır ve günlük fiyatı 0'dan büyük olmalıdır.";
+    public static string ColorDeleted = "Color Deleted";
+    public static string ColorUpdated = "Color Updated";
+    public static string NotColor = "There isn't color";
+
+    public static string UserListed = "Users Listed";
+    public static string UserCall = "User Call";
+    public static string UserAdded = "User Added";
+    public static string UserDeleted = "User Deleted";
+    public static string UserUpdated = "User Updated";
+    public static string NotUser = "There isn't user";
+
+    public static string CustomerListed = "Customers Listed";
+    public static string CustomerCall = "Customer Call";
+    public static string CustomerAdded = "Customer Added";
+    public static string CustomerDeleted = "Customer Deleted";
+    public static string CustomerUpdated = "Customer Updated";
+    public static string NotCustomer = "There isn't customer";
+
     public static string MaintenanceTime = "SistemBakımda";
-    public static string CarsListed = "Arabalar Listelendi";
-    public static string CarCall = "Araba geitirildi";
-    public static string UserCall = "Kullanıcı geitirildi";
     public static string noRental = "Araba hala kullanımda";
     public static string Rentall = "Araba Kiralandı";
 

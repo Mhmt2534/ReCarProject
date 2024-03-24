@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract;
 
-public interface ICustomerServices
+public interface ICustomerService
 {
     IResult Add(Customers customers);
     IResult Delete(Customers customers);

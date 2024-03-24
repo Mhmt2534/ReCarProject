@@ -11,7 +11,7 @@ rentals1.CarId = 5;
 rentals1.CustomerId = 4;
 rentals1.RentDate = DateTime.Now;
 
-
+ 
 
 
 RentalManager rentalManager = new(new EfRentalDal());

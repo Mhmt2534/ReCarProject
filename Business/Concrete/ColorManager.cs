@@ -23,28 +23,28 @@ public class ColorManager : IColorService
     public IResult Add(Color color)
     {
         _colorDal.Add(color);
-        return new SuccessResult(Messages.BrandAdded);
+        return new SuccessResult(Messages.ColorAdded);
     }
 
     public IResult Delete(Color color)
     {
         _colorDal.Delete(color);
-        return new SuccessResult(Messages.BrandAdded);
+        return new SuccessResult(Messages.ColorDeleted);
     }
 
     public IDataResult<List<Color>> GetAll()
     {
-        return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.BrandAdded);
+        return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
     }
 
     public IDataResult<Color> GetColorById(int id)
     {
-        return new SuccessDataResult<Color>(_colorDal.Get(b => b.ColorId == id));
+        return new SuccessDataResult<Color>(_colorDal.Get(b => b.ColorId == id),Messages.ColorCall);
     }
 
     public IResult Update(Color color)
     {
         _colorDal.Update(color);
-        return new SuccessResult(Messages.BrandAdded);
+        return new SuccessResult(Messages.ColorUpdated);
     }
 }
