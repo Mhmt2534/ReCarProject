@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfUserDal : EfEntityRepositoryBase<Users, NorthwindContext>, IUserDal
+public class EfUserDal : EfEntityRepositoryBase<Users, ReCarContext>, IUserDal
 {
     public List<CompanyAndUserDetailDto> CompanyAndUserDetail()
     {
-        using (NorthwindContext context=new())
+        using (ReCarContext context=new())
         {
             var result=from u in context.Users
                        join c in context.Customers

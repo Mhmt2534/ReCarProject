@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EFBrandDal : EfEntityRepositoryBase<Brand,NorthwindContext>,IBrandDal
+public class EFBrandDal : EfEntityRepositoryBase<Brand,ReCarContext>,IBrandDal
 {
     
 }

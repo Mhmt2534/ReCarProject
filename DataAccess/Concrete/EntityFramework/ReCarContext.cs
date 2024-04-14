@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class NorthwindContext:DbContext
+public class ReCarContext:DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -21,5 +21,6 @@ public class NorthwindContext:DbContext
     public DbSet<Users> Users { get; set; }
     public DbSet<Customers> Customers { get; set; }
     public DbSet<Rentals> Rentals { get; set; }
+    public DbSet<CarImage> CarImages { get; set; }
 
 }

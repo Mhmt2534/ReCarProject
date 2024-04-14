@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class EfRentalDal : EfEntityRepositoryBase<Rentals, NorthwindContext>, IRentalDal
+public class EfRentalDal : EfEntityRepositoryBase<Rentals, ReCarContext>, IRentalDal
 {
     public List<RentalCustomerDetail> RentalCustomerDetails()
     {
-        using (NorthwindContext context=new())
+        using (ReCarContext context=new())
         {
             return null;
         }
