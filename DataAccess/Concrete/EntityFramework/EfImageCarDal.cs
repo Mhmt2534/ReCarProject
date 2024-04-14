@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete.EntityFramework;
-
-public class EfUserDal:EfEntityRepositoryBase<Users,NorthwindContext>,IUserDal
+namespace DataAccess.Concrete.EntityFramework
 {
+    public class EfImageCarDal:EfEntityRepositoryBase<ImageCar,NorthwindContext>,IImageCarDal
+    {
+    }
 }

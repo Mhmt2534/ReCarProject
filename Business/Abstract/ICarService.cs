@@ -14,7 +14,6 @@ public interface ICarService
     IDataResult<List<Car>> GetAll();
     IDataResult<Car> GetCarsById(int id);
     public IDataResult<List<Car>> GetCarsByColorId(int id);
-    public IDataResult<List<Car>> GetCarsByBrandId(int id);
 
     IResult Add(Car car);
     IResult Update(Car car);

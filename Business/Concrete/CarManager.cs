@@ -1,8 +1,5 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Business.ValidationRules.FluentValidation;
-using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcern.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -30,39 +27,26 @@ public class CarManager : ICarService
 
     public IDataResult<Car> GetCarsById(int id)
     {
-        var res = _carDal.Get(c => c.CarId == id);
-        if (res==null)
-        {
-            return new ErrorDataResult<Car>(Messages.NotCar);
-        }
         return new SuccessDataResult<Car>(_carDal.Get(c=>c.CarId==id), Messages.CarCall);
     }
 
     public IDataResult<List<Car>> GetCarsByBrandId(int id) {
-        var res = _carDal.GetAll(c => c.BrandId == id);
-        if (res.Count==0)
-        {
-            return new ErrorDataResult<List<Car>>(Messages.NotCar);
-        }
         return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id),Messages.CarAdded);
     }
 
     public IDataResult<List<Car>> GetCarsByColorId(int id) {
-        var res = _carDal.GetAll(c => c.ColorId == id);
-        if (res.Count==0)
-        {
-            return new ErrorDataResult<List<Car>>(Messages.NotCar);
-        }
         return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=> c.ColorId == id),Messages.CarsListed);
     }
 
-    [ValidationAspect(typeof(CarValidator))]
     public IResult Add(Car car)
     {
-
-
-        _carDal.Add(car);
-        return new ErrorResult(Messages.CarNotAdded);
+        if (car.Description.Length >= 2 && car.DailyPrice > 0)
+        {
+            Console.WriteLine("Deneme");
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
+        }
+       return new ErrorResult(Messages.CarNotAdded);
         
     }
 
@@ -80,7 +64,10 @@ public class CarManager : ICarService
 
     public IDataResult<List<CarDetailDto>> GetDetail()
     {
-  
+        if (DateTime.Now.Hour==23)
+        {
+            return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+        }
         return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail(), Messages.CarsListed);
     }
 

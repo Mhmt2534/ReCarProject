@@ -3,7 +3,6 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +22,7 @@ public class UserManager : IUserService
     public IResult Add(Users users)
     {
         _userDal.Add(users);
-        return new SuccessResult(Messages.UserAdded);
+        return new SuccessResult(Messages.UserAdd);
     }
 
     public IResult Delete(Users users)
@@ -36,17 +35,12 @@ public class UserManager : IUserService
 
     public IDataResult<List<Users>> GetAll()
     {
-        return new SuccessDataResult<List<Users>>(_userDal.GetAll(),Messages.UserListed);
+        return new SuccessDataResult<List<Users>>(_userDal.GetAll(),Messages.UserCall);
     }
 
     public IDataResult<Users> GetById(int id)
     {
         return new SuccessDataResult<Users>(_userDal.Get(u=>u.Id==id),Messages.UserCall);
-    }
-
-    public IDataResult<List<CompanyAndUserDetailDto>> GetDetail()
-    {
-        return new SuccessDataResult<List<CompanyAndUserDetailDto>>(_userDal.CompanyAndUserDetail(),Messages.UserListed);
     }
 
     public IResult Update(Users users)
