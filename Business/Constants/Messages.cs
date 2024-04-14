@@ -48,8 +48,7 @@ public static class Messages
     public static string MaintenanceTime = "SistemBakımda";
     public static string noRental = "Araba hala kullanımda";
     public static string Rentall = "Araba Kiralandı";
-
-    internal static string ImageAdded="Image Added";
+    internal static string ImageAdded;
     internal static string CarImageDeleted;
     internal static string ImageUpdated;
     internal static string CarImageLimitReached;
