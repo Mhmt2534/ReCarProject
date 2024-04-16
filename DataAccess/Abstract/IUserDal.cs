@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract;
 
-public interface IUserDal:IEntitiyRepository<Users>
+public interface IUserDal:IEntitiyRepository<User>
 {
     List<CompanyAndUserDetailDto> CompanyAndUserDetail();
+    List<OperationClaim> GetClaims(User user);
 }

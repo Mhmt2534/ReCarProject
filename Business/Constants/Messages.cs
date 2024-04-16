@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,4 +57,11 @@ public static class Messages
     internal static string ImagesListedByCarId;
     internal static string ImagesListed;
     internal static string ImagesListedById;
+    internal static string UserRegistered;
+    internal static User UserNotFound;
+    internal static User PasswordError;
+    internal static string SuccessfulLogin;
+    internal static string UserAlreadyExists;
+    internal static string AccessTokenCreated;
+    internal static string? AuthorizationDenied;
 }

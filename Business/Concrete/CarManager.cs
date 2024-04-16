@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -57,6 +58,7 @@ public class CarManager : ICarService
     }
 
     [ValidationAspect(typeof(CarValidator))]
+    //[SecuredOperation("car.add,admin")]
     public IResult Add(Car car)
     {
 
@@ -84,4 +86,5 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail(), Messages.CarsListed);
     }
 
+ 
 }
