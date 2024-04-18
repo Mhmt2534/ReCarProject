@@ -8,7 +8,7 @@ Business : It is the business layer of our project. Various business rules; Data
 WebAPI : It is the Restful API Layer of the project. Known methods: Get, Post, Put, Delete
 
 <h1>Used Technologies</h1>
-Restful API
+Restful API <br>
 Result Types
 AutoMappers
 Interceptor
