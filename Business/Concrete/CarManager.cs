@@ -2,6 +2,9 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcern.Validation;
 using Core.Utilities.Results;
@@ -29,6 +32,8 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
     }
 
+    [CacheAspect]
+    [PerformanceAspect(5)]
     public IDataResult<Car> GetCarsById(int id)
     {
         var res = _carDal.Get(c => c.CarId == id);
@@ -58,7 +63,8 @@ public class CarManager : ICarService
     }
 
     [ValidationAspect(typeof(CarValidator))]
-    //[SecuredOperation("car.add,admin")]
+    [SecuredOperation("car.add,admin")]
+    [CacheRemoveAspect("IProductService.Get")]
     public IResult Add(Car car)
     {
 
@@ -68,6 +74,7 @@ public class CarManager : ICarService
         
     }
 
+    [CacheRemoveAspect("IProductService.Get")]
     public IResult Update(Car car)
     {
         _carDal.Update(car);
@@ -86,5 +93,17 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail(), Messages.CarsListed);
     }
 
- 
+
+    [TransactionScopeAspect]
+    public IResult TransactionalOperation(Car car)
+    {
+        _carDal.Update(car);
+        _carDal.Add(car);
+        return new SuccessResult(Messages.CarUpdated);
+    }
+
+  
+
+
+
 }
