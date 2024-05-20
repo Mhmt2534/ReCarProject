@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
             var result= _carService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -49,7 +49,30 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbycolorid")]
+		[HttpGet("getbybrandiddetail")]
+		public IActionResult GetByBrandIdDetail(int id)
+		{
+			var result = _carService.GetCarsByBrandIdDetail(id);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result.Message);
+		}
+
+		[HttpGet("getbycoloriddetail")]
+		public IActionResult GetByColorIdDetail(int id)
+		{
+			var result = _carService.GetCarsByColorIdDetail(id);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result.Message);
+		}
+
+
+		[HttpGet("getbycolorid")]
         public IActionResult GetByColorId(int id)
         {
             var result = _carService.GetCarsById(id);
@@ -104,5 +127,30 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-    }
+
+		[HttpGet("Getimagedetail")]
+		public IActionResult GetImageDetail(int id)
+		{
+			var result = _carService.GetCarImageByDetailDto(id);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpGet("getcarbybrandandcolor")]
+		public IActionResult GetCarByBrandAndColor(int brandId, int colorId)
+		{
+			var result = _carService.GetCarByBrandAndColor(brandId, colorId);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+
+
+	}
 }

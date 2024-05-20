@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,4 +18,6 @@ public interface IRentalService
     IDataResult<List<Rentals>> GetAll();
 
     IDataResult<Rentals> GetById(int id);
+    IDataResult<List<Rentals>> GetRentalsByCarId(int id);
+	IDataResult<List<RentalDetailDto>> GetDetail();
 }

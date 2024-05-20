@@ -42,7 +42,12 @@ public class AutofacBusinessModule:Module
         builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
         builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
 
-        builder.RegisterType<FileHelperManager>().As<IFileHelperService>().SingleInstance();
+		builder.RegisterType<CreditCardManager>().As<ICreditCardService>().SingleInstance();
+		builder.RegisterType<EfCreditCardDal>().As<ICreditCardDal>().SingleInstance();
+
+
+
+		builder.RegisterType<FileHelperManager>().As<IFileHelperService>().SingleInstance();
 
 
 

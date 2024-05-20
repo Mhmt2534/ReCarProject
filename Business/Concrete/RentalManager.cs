@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,23 @@ public class RentalManager : IRentalService
         return new SuccessDataResult<Rentals>(_rentalDal.Get(r=>r.Id==id));
     }
 
-    public IResult Update(Rentals rentals)
+	public IDataResult<List<RentalDetailDto>> GetDetail()
+	{
+        return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.rentalDetailDtos(),Messages.RentalsListed);
+	}
+
+	public IDataResult<List<Rentals>> GetRentalsByCarId(int id)
+	{
+		var result = _rentalDal.GetAll(p => p.CarId == id && p.ReturnDate == null).Any();
+		if (result)
+        {
+            return new ErrorDataResult<List<Rentals>>(Messages.noRental);
+        }
+		return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(r=>r.CarId==id),Messages.canRental);
+
+	}
+
+	public IResult Update(Rentals rentals)
     {
         _rentalDal.Update(rentals);
         return new SuccessResult(Messages.CarUpdated);

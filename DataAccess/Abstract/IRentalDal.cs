@@ -12,4 +12,5 @@ namespace DataAccess.Abstract;
 public interface IRentalDal:IEntitiyRepository<Rentals>
 {
     List<RentalCustomerDetail> RentalCustomerDetails();
+    List<RentalDetailDto> rentalDetailDtos();
 }

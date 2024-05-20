@@ -32,8 +32,7 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
     }
 
-    [CacheAspect]
-    [PerformanceAspect(5)]
+
     public IDataResult<Car> GetCarsById(int id)
     {
         var res = _carDal.Get(c => c.CarId == id);
@@ -63,14 +62,12 @@ public class CarManager : ICarService
     }
 
     [ValidationAspect(typeof(CarValidator))]
-    [SecuredOperation("car.add,admin")]
-    [CacheRemoveAspect("IProductService.Get")]
     public IResult Add(Car car)
     {
 
 
         _carDal.Add(car);
-        return new ErrorResult(Messages.CarNotAdded);
+        return new SuccessResult(Messages.CarAdded);
         
     }
 
@@ -94,7 +91,9 @@ public class CarManager : ICarService
     }
 
 
-    [TransactionScopeAspect]
+
+
+	[TransactionScopeAspect]
     public IResult TransactionalOperation(Car car)
     {
         _carDal.Update(car);
@@ -102,8 +101,40 @@ public class CarManager : ICarService
         return new SuccessResult(Messages.CarUpdated);
     }
 
-  
+	public IDataResult<List<CarByBrandIdDto>> GetCarsByBrandIdDetail(int id)
+	{
+		var res = _carDal.GetAll(c => c.BrandId == id);
+		if (res.Count == 0)
+		{
+			return new ErrorDataResult<List<CarByBrandIdDto>>(Messages.NotCar);
+		}
+		return new SuccessDataResult<List<CarByBrandIdDto>>(_carDal.GetCarByBrandIdDtos(id), Messages.CarAdded);
+	}
+
+	public IDataResult<List<CarByColorIdDto>> GetCarsByColorIdDetail(int id)
+	{
+		var res = _carDal.GetAll(c => c.BrandId == id);
+		if (res.Count == 0)
+		{
+			return new ErrorDataResult<List<CarByColorIdDto>>(Messages.NotCar);
+		}
+		return new SuccessDataResult<List<CarByColorIdDto>>(_carDal.GetCarByColorIdDtos(id), Messages.CarAdded);
+	}
+
+	public IDataResult<CarImageByDetailDto> GetCarImageByDetailDto(int id)
+	{
+		var res = _carDal.Get(c => c.CarId == id);
+		if(res == null)
+		{
+			return new ErrorDataResult<CarImageByDetailDto>(_carDal.GetCarImageByDetailDto(id), Messages.NotCar);
+		}
+		return new SuccessDataResult<CarImageByDetailDto>(_carDal.GetCarImageByDetailDto(id), Messages.CarCall);
+	}
 
 
+	public IDataResult<List<CarDetailDto>> GetCarByBrandAndColor(int brandId, int colorId)
+	{
+		return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarByBrandAndColor(brandId, colorId));
+	}
 
 }

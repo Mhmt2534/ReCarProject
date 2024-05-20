@@ -49,7 +49,8 @@ public static class Messages
     public static string MaintenanceTime = "SistemBakımda";
     public static string noRental = "Araba hala kullanımda";
     public static string Rentall = "Araba Kiralandı";
-    internal static string ImageAdded="de";
+    public static string canRental = "Araba Boşta";
+	internal static string ImageAdded="de";
     internal static string CarImageDeleted;
     internal static string ImageUpdated;
     internal static string CarImageLimitReached;
@@ -64,4 +65,5 @@ public static class Messages
     internal static string UserAlreadyExists;
     internal static string AccessTokenCreated;
     internal static string? AuthorizationDenied;
+	internal static string RentalsListed="Kiralamalar Listelendi";
 }
